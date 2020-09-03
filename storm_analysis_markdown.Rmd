@@ -163,3 +163,4 @@ plot_grid(g1,g2,ncol = 2, nrow = 1)
 Conclusion:  When strictly talking about economic damages, the events that have caused the most damage are Flood, Drought and Tornado, but for different reasons. For example the biggest risk to crops is a hail event, whereas the biggest threat to properties are tornados.
 
 
+
