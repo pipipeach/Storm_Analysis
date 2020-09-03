@@ -48,7 +48,7 @@ storm$CROPDMGVAL <- storm$CROPDMG * storm$CROPEXP
 storm_evtype_1 <- aggregate(FATALITIES ~EVTYPE, data = storm, FUN = sum ) 
 fatalities <- arrange(storm_evtype_1, desc(FATALITIES))
 top_10_1 <- fatalities[1:10,]
-top_10_1$EVTYPE <- factor(top_10_1$EVTYPE)
+top_10_1$EVTYPE <- factor(top_10_1$EVTYPE, levels = fatalities$EVTYPE)
 
 ggplot(top_10_1, aes(x = EVTYPE, y = FATALITIES)) + 
         geom_bar(stat = "identity") + 
@@ -58,7 +58,8 @@ ggplot(top_10_1, aes(x = EVTYPE, y = FATALITIES)) +
 storm_evtype_2 <- aggregate(INJURIES ~EVTYPE, data = storm, FUN = sum ) 
 injuries <- arrange(storm_evtype_2, desc(INJURIES))
 top_10_2 <- injuries[1:10,]
-top_10_2$EVTYPE <- factor(top_10_2$EVTYPE)
+top_10_2$EVTYPE <- factor(top_10_2$EVTYPE, levels = injuries$EVTYPE)
+
 ggplot(top_10_2, aes(x = EVTYPE, y = INJURIES)) + 
         geom_bar(stat = "identity") + 
         theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
@@ -67,7 +68,8 @@ ggplot(top_10_2, aes(x = EVTYPE, y = INJURIES)) +
 storm_evtype_3 <- aggregate(PROPDMG ~EVTYPE, data = storm, FUN = sum )
 property<- arrange(storm_evtype_3, desc(PROPDMG))
 top_10_3 <- property[1:10,]
-top_10_3$EVTYPE <- factor(top_10_3$EVTYPE)
+top_10_3$EVTYPE <- factor(top_10_3$EVTYPE, levels = property$EVTYPE)
+
 ggplot(top_10_3, aes(x = EVTYPE, y = PROPDMG)) + 
         geom_bar(stat = "identity") + 
         theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
@@ -76,13 +78,12 @@ ggplot(top_10_3, aes(x = EVTYPE, y = PROPDMG)) +
 storm_evtype_4 <- aggregate(CROPDMG ~EVTYPE, data = storm, FUN = sum )
 crop<- arrange(storm_evtype_4, desc(CROPDMG))
 top_10_4 <- crop[1:10,]
-top_10_4$EVTYPE <- factor(top_10_4$EVTYPE)
+top_10_4$EVTYPE <- factor(top_10_4$EVTYPE, levels = crop$EVTYPE)
+
 ggplot(top_10_4, aes(x = EVTYPE, y = CROPDMG )) + 
         geom_bar(stat = "identity") + 
         theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
         xlab("Event Type") + ylab("Crop Damage") + ggtitle("Crop damage by top 10 Weather Events")
-
-
 
 
 
